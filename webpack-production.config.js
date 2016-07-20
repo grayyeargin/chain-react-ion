@@ -14,7 +14,7 @@ var CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
 
 module.exports = {
   entry: {
-    'main-asset': './js/index.js'
+    'main-asset': './src/js/index.js'
   },
   output: {
     path: path.join(__dirname, 'static'),
@@ -37,12 +37,12 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: ['babel'],
-        include: path.join(__dirname, 'js')
+        include: path.join(__dirname, 'src/js')
       },
       {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader"),
-        include: path.join(__dirname, 'css')
+        include: path.join(__dirname, 'src/css')
       },
       { 
         test: /\.(png|jpg|svg)$/, 
