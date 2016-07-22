@@ -1,7 +1,7 @@
 /*
  * This is the 'production' config for webpack
  * The command 'npm run build' will use this config and create
- * minified css and js in the static folder (video-browser.css & .js)
+ * minified css and js in the static folder ([asset-name].css & .js)
  * 
  */
 

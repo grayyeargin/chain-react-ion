@@ -18,7 +18,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'static'),
-    filename: 'video-browser.js',
+    filename: 'main-asset.js',
     publicPath: '/static/'
   },
   resolve: {
