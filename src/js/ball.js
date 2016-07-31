@@ -2,7 +2,7 @@
 export default class Ball {
 	constructor(args) {
 		this.boardWidth = args.width;
-		this.boardHeight = ards.height;
+		this.boardHeight = args.height;
 		this.cx = Math.floor(Math.random() * args.width);
 		this.cy = Math.floor(Math.random() * args.height);
 		this.radius = 5;
@@ -16,11 +16,11 @@ export default class Ball {
 	move() {
 		if ( this.cx === 0 ) {
 			this.xInt = 1;
-		} else if ( this.cx === this.boardWidth ) {
+		} else if ( this.cx >= this.boardWidth ) {
 			this.xInt = -1;
 		} else if ( this.cy === 0 ) {
 			this.yInt = 1;
-		} else if ( this.cy === this.boardHeight ) {
+		} else if ( this.cy >= this.boardHeight ) {
 			this.yInt = -1;
 		}
 
@@ -29,11 +29,19 @@ export default class Ball {
 	}
 
 	render(state) {
+		this.move();
+		
 		const context = state.context;
+		
+		context.save();
 
-		context.beginPath();
-		context.arc(this.cx,this.cy, this.radius, this.start, this.end);
+    context.translate(this.cx, this.cy);
+    context.beginPath();
+    context.arc(0, 0, this.radius, this.start, this.end);
+    context.closePath();
 		context.fillStyle = this.color;
 		context.fill();
+
+		context.restore();
 	}
 }
