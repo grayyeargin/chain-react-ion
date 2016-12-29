@@ -1,5 +1,6 @@
 import React from 'react'
 import Ball from './ball'
+import Explosion from './explosion'
 
 export class Board extends React.Component {
 	constructor() {
@@ -67,6 +68,12 @@ export class Board extends React.Component {
 		for (let i = 0; i < this.balls.length; i++) {
 			this.balls[i].render(this.state);
 		}
+
+		if (!this.explosions.length && this.state.exploding) {
+			this.endGame();
+		} else {
+			this.sizeExplosions();
+		}
 	}
 
 	clickExplosion(e) {
@@ -88,16 +95,26 @@ export class Board extends React.Component {
 				firstExplosion = new Explosion({
 					cx: x,
 					cy: y,
-					radius: 1,
-					color: '#F5AB35',
-					sizeInt: .5,
-					start: 0,
-					end: Math.PI*2
+					color: '#F5AB35'
 				});
 
 				this.explosions.push(firstExplosion);
 
 				this.setState({ exploding: true });
+	}
+
+	sizeExplosions() {
+		let k = this.explosions.length;
+
+		while(k--) {
+			let explosion = this.explosions[k];
+
+			if (explosion.radius < 1) {
+				this.explosions.splice(k, 1);
+			} else {
+				explosion.render(this.state);
+			}
+		}
 	}
 
 	render() {
