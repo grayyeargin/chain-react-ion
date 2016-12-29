@@ -19,7 +19,8 @@ export class Board extends React.Component {
 			percentHit: 0.1,
 			ballCount: 30,
 			minimumScore: 2,
-			hitsLeft: 2
+			hitsLeft: 2,
+			exploding: false
 		}
 
 		this.balls = [];
@@ -68,10 +69,41 @@ export class Board extends React.Component {
 		}
 	}
 
+	clickExplosion(e) {
+		if (this.state.exploding) {
+			return;
+		}
+
+		let board = this.refs.canvas,
+				x = e.clientX - board.offsetLeft,
+				y = e.clientY - board.offsetTop,
+				context = this.state.context,
+				firstExplosion;
+
+				context.beginPath();
+				context.arc(x,y,1,0,Math.PI*2);
+				context.fillStyle = '#F5AB35';
+				context.fill();
+
+				firstExplosion = new Explosion({
+					cx: x,
+					cy: y,
+					radius: 1,
+					color: '#F5AB35',
+					sizeInt: .5,
+					start: 0,
+					end: Math.PI*2
+				});
+
+				this.explosions.push(firstExplosion);
+
+				this.setState({ exploding: true });
+	}
+
 	render() {
 		return (
 			<div className="board-container">
-				<canvas id="game" ref="canvas"
+				<canvas id="game" ref="canvas" onClick={this.clickExplosion.bind(this)}
 				 width={this.state.width}
          height={this.state.height}
 				 />
