@@ -113,6 +113,25 @@ export class Board extends React.Component {
 				this.explosions.splice(k, 1);
 			} else {
 				explosion.render(this.state);
+				this.checkHit(explosion);
+			}
+		}
+	}
+
+	checkHit(explosion) {
+		let i = this.balls.length
+		while(i--) {
+			let ball = this.balls[i];
+
+			if (this.state.context.isPointInPath(ball.cx, ball.cy)){
+				let newExplosion = new Explosion({
+					cx: ball.cx,
+					cy: ball.cy,
+					color: this.state.colors[Math.floor(Math.random()*this.state.colors.length)]
+				});
+
+				this.explosions.push(newExplosion);
+				this.balls.splice(i, 1);
 			}
 		}
 	}
