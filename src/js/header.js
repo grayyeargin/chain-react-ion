@@ -10,10 +10,10 @@ export class Header extends React.Component {
 		return (
 			<div id="title-board">
 				<img src="chain-reaction.png" alt="" />
-				<h2>LEVEL: <span id="level">1</span></h2>
+				<h2>LEVEL: <span id="level">{this.props.level}</span></h2>
 				<div className="wrapper score-contents">
 					<h3>Score: <span id="score">{this.props.score}</span></h3>
-					<h3>To Win: <span id="hits-left">2</span></h3>
+					<h3>To Win: <span id="hits-left">{this.props.scoreNeeded}</span></h3>
 				</div>
 			</div>
 		)
@@ -22,7 +22,9 @@ export class Header extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		score: state.score
+		score: state.score,
+		scoreNeeded: state.scoreNeeded,
+		level: state.level
 	}
 }
 
