@@ -1,10 +1,12 @@
 import React from 'react'
 import Ball from './ball'
 import Explosion from './explosion'
+import { connect } from 'react-redux'
+import { increaseScore } from './redux/actions'
 
 export class Board extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 
 		this.sassyLossComments = ["Bummer dude... You lost", "Try getting more 'splosions next time", "'A' for effort. 'F+' for actual success", "You didn't win, BUT you are excellent at losing", "Don't sweat the loss, I am sure you are good at something"];
 
@@ -130,6 +132,7 @@ export class Board extends React.Component {
 					color: this.state.colors[Math.floor(Math.random()*this.state.colors.length)]
 				});
 
+				this.props.increaseScore();
 				this.explosions.push(newExplosion);
 				this.balls.splice(i, 1);
 			}
@@ -148,4 +151,16 @@ export class Board extends React.Component {
 	}
 }
 
-export default Board
+function mapStateToProps(state) {
+	return state
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		increaseScore: function(){
+			dispatch(increaseScore()) 
+		}
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board)
