@@ -7,8 +7,10 @@ export class Layover extends React.Component {
   }
 
 	render() {
+		const {view, active} = this.props;
+		const hiddenClass = active ? '' : 'hidden';
 		return (
-			<div id="game-layover">
+			<div id="game-layover" className={hiddenClass}>
 				<div>button</div>
 			</div>
 		)
@@ -17,11 +19,8 @@ export class Layover extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		score: state.score,
-		scoreNeeded: state.scoreNeeded,
-		level: state.level,
-		ballCount: state.ballCount,
-		percentNeeded: state.percentNeeded
+		view: state.layover.view,
+		active: state.layover.active
 	}
 }
 

@@ -1,6 +1,7 @@
 export const INC_SCORE = 'INC_SCORE'
 export const NEXT_LEVEL = 'NEXT_LEVEL'
-export const UPDATE_LAYOVER = 'UPDATE_LAYOVER'
+export const SHOW_LAYOVER = 'SHOW_LAYOVER'
+export const HIDE_LAYOVER = 'HIDE_LAYOVER'
 
 export function increaseScore() {
 	return {
@@ -14,9 +15,15 @@ export function nextLevel() {
 	}
 }
 
-export function updateLayover(showLayover) {
+export function updateLayover(view) {
 	return {
-		type: UPDATE_LAYOVER,
-		showLayover
+		type: SHOW_LAYOVER,
+		view
+	}
+}
+
+export function hideLayover() {
+	return {
+		type: HIDE_LAYOVER
 	}
 }

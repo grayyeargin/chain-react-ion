@@ -7,6 +7,7 @@ import store from './redux/store'
 
 import Header from './Header'
 import Board from './Board'
+import Layover from './layover'
 
 import '../css/base.scss';
 
@@ -15,6 +16,7 @@ ReactDOM.render(
 		<div>
 			<Header/>
 			<Board/>
+			<Layover/>
 	  </div>
 	 </Provider>,
   document.getElementById('root')
