@@ -15,7 +15,7 @@ export function nextLevel() {
 	}
 }
 
-export function updateLayover(view) {
+export function showLayover(view) {
 	return {
 		type: SHOW_LAYOVER,
 		view

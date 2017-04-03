@@ -2,7 +2,7 @@ import React from 'react'
 import Ball from './ball'
 import Explosion from './explosion'
 import { connect } from 'react-redux'
-import { increaseScore } from './redux/actions'
+import { increaseScore, showLayover } from './redux/actions'
 
 export class Board extends React.Component {
 	constructor(props) {
@@ -73,6 +73,7 @@ export class Board extends React.Component {
 
 		if (!this.explosions.length && this.state.exploding) {
 			this.endGame();
+			this.setState({ exploding: false });
 		} else {
 			this.sizeExplosions();
 		}
@@ -139,6 +140,10 @@ export class Board extends React.Component {
 		}
 	}
 
+	endGame() {
+		this.props.showLayover('start');
+	}
+
 	render() {
 		return (
 			<div className="board-container">
@@ -159,6 +164,9 @@ function mapDispatchToProps(dispatch) {
 	return {
 		increaseScore: function(){
 			dispatch(increaseScore()) 
+		},
+		showLayover: function(view) {
+			dispatch(showLayover(view))
 		}
 	}
 }

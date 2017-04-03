@@ -3,7 +3,8 @@ body {
 	background-color: #3A539B;
 	font-family: 'VT323', monospace;
 	text-align: center;
-	padding-top: 20px;
+	margin: 0;
+	padding: 10px;
 }
 
 h2 {
@@ -50,7 +51,11 @@ h2 {
 	background-color: rgba(0, 0, 0, .7);
 }
 
-.option-buttons {
+.game-layover-msg {
+	margin-top: 250px;
+}
+
+.game-button {
 	border: none;
   outline: none;
   margin: 0 auto;
@@ -60,6 +65,7 @@ h2 {
   font-size: 1.5em;
   color: #fff;
 	cursor: pointer;
+	display: inline-block;
 }
 
 .option-buttons:hover {
@@ -73,6 +79,17 @@ h2 {
 
 #mobile {
 	display: none;
+}
+
+#game-layover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	padding-top: 30px;
+	background-color: rgba(0, 0, 0, .7);
 }
 
 
