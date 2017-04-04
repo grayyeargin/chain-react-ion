@@ -9,9 +9,24 @@ export function increaseScore() {
 	}
 }
 
-export function nextLevel() {
+export function nextLevel(curState) {
+	let ballCount, percentNeeded, scoreNeeded;
+
+	if (curState.level > 5) {
+		ballCount = curState.ballCount - 5;
+		percentNeeded = curState.percentNeeded;
+	} else {
+		ballCount = curState.ballCount + 10;
+		percentNeeded = curState.percentNeeded + 0.2;
+	}
+
+	scoreNeeded = ballCount * percentNeeded;
+
 	return {
-		type: NEXT_LEVEL
+		type: NEXT_LEVEL,
+		scoreNeeded,
+		ballCount,
+		percentNeeded
 	}
 }
 

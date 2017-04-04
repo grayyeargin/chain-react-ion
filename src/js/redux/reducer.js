@@ -19,6 +19,8 @@ function score(state = initialState.score, action) {
 	switch (action.type) {
 		case INC_SCORE:
 			return state + 1
+		case NEXT_LEVEL:
+		 return 0
 		default:
 			return state
 	}
@@ -27,7 +29,7 @@ function score(state = initialState.score, action) {
 function scoreNeeded(state = initialState.scoreNeeded, action) {
 	switch (action.type) {
 		case NEXT_LEVEL:
-			return state.scoreNeeded
+			return action.scoreNeeded
 		default:
 			return state
 	}
@@ -36,7 +38,7 @@ function scoreNeeded(state = initialState.scoreNeeded, action) {
 function level(state = initialState.level, action) {
 	switch (action.type) {
 		case NEXT_LEVEL:
-			return state.level + 1
+			return state + 1
 		default:
 			return state
 	}
@@ -45,7 +47,7 @@ function level(state = initialState.level, action) {
 function ballCount(state = initialState.ballCount, action) {
 	switch (action.type) {
 		case NEXT_LEVEL:
-			return state.ballCount
+			return action.ballCount
 		default:
 			return state
 	}
@@ -54,7 +56,7 @@ function ballCount(state = initialState.ballCount, action) {
 function percentNeeded(state = initialState.percentNeeded, action) {
 	switch (action.type) {
 		case NEXT_LEVEL:
-			return state.percentNeeded
+			return action.percentNeeded
 		default:
 			return state
 	}

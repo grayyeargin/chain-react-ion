@@ -16,9 +16,17 @@ export class Layover extends React.Component {
 	render() {
 		const {view, active, level} = this.props;
 		const hiddenClass = active ? '' : 'hidden';
+		let layoverView;
+
+		if (view === "start") {
+			layoverView = <GameStart onClick={this.handleStartClick}/>;
+		} else {
+			layoverView = <NextLevel onClick={this.handleStartClick}/>;
+		}
+
 		return (
 			<div id="game-layover" className={hiddenClass}>
-				<GameStart onClick={this.handleStartClick}/>
+				{layoverView}
 			</div>
 		)
 	}
