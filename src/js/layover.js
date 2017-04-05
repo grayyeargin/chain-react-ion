@@ -1,16 +1,28 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { showLayover, hideLayover } from './redux/actions'
+import { showLayover, hideLayover, nextLevel } from './redux/actions'
 
 export class Layover extends React.Component {
 	constructor(props) {
     super(props);
 
     this.handleStartClick = this.handleStartClick.bind(this);
+    this.handleNextClick = this.handleNextClick.bind(this);
   }
 
   handleStartClick() {
   	this.props.hideLayover();
+  }
+
+  handleNextClick() {
+  	this.props.nextLevel({
+			level: this.props.level,
+			ballCount: this.props.ballCount,
+			percentNeeded: this.props.percentNeeded,
+			scoreNeeded: this.props.scoreNeeded
+		});
+
+		this.props.hideLayover();
   }
 
 	render() {
@@ -21,7 +33,7 @@ export class Layover extends React.Component {
 		if (view === "start") {
 			layoverView = <GameStart onClick={this.handleStartClick}/>;
 		} else {
-			layoverView = <NextLevel onClick={this.handleStartClick}/>;
+			layoverView = <NextLevel onClick={this.handleNextClick}/>;
 		}
 
 		return (
@@ -36,7 +48,10 @@ function mapStateToProps(state) {
 	return {
 		view: state.layover.view,
 		active: state.layover.active,
-		level: state.level
+		level: state.level,
+		ballCount: state.ballCount,
+		percentNeeded: state.percentNeeded,
+		scoreNeeded: state.scoreNeeded
 	}
 }
 
@@ -47,6 +62,9 @@ function mapDispatchToProps(dispatch) {
 		},
 		showLayover: function(view){
 			dispatch(showLayover(view));
+		},
+		nextLevel: function(opts){
+			dispatch(nextLevel(opts));
 		}
 	}
 }

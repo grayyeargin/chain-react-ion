@@ -17,10 +17,10 @@ export function nextLevel(curState) {
 		percentNeeded = curState.percentNeeded;
 	} else {
 		ballCount = curState.ballCount + 10;
-		percentNeeded = curState.percentNeeded + 0.2;
+		percentNeeded = curState.percentNeeded + 0.07;
 	}
 
-	scoreNeeded = ballCount * percentNeeded;
+	scoreNeeded = Math.round(ballCount * percentNeeded);
 
 	return {
 		type: NEXT_LEVEL,

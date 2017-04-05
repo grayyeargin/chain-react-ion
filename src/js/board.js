@@ -142,12 +142,6 @@ export class Board extends React.Component {
 
 	endGame() {
 		this.props.showLayover('next-level');
-		// this.props.nextLevel({
-		// 	level: this.props.level,
-		// 	ballCount: this.props.ballCount,
-		// 	percentNeeded: this.props.percentNeeded,
-		// 	scoreNeeded: this.props.scoreNeeded
-		// });
 	}
 
 	render() {

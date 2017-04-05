@@ -83,6 +83,7 @@ const chainReactionApp = combineReducers({
 	scoreNeeded,
 	level,
 	ballCount,
+	percentNeeded,
 	layover
 })
 
