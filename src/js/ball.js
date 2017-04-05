@@ -28,10 +28,10 @@ export default class Ball {
 		this.cy += this.yInt;
 	}
 
-	render(state) {
+	render(contx) {
 		this.move();
 		
-		const context = state.context;
+		const context = contx;
 		
 		context.save();
 

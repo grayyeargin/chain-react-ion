@@ -2,7 +2,7 @@ import React from 'react'
 import Ball from './ball'
 import Explosion from './explosion'
 import { connect } from 'react-redux'
-import { increaseScore, showLayover, nextLevel } from './redux/actions'
+import { increaseScore, showLayover, nextLevel, setUpBoard, addExplosion, removeBall } from './redux/actions'
 
 export class Board extends React.Component {
 	constructor(props) {
@@ -32,20 +32,24 @@ export class Board extends React.Component {
 
 	componentDidMount() {
 		const context = this.refs.canvas.getContext('2d');
-    this.setState({ context: context });
 
-    this.createBalls(this.state.ballCount);
+    this.props.setUpBoard({
+    	context: context,
+    	num: this.props.ballCount,
+    	height: this.props.boardSettings.height,
+    	width: this.props.boardSettings.width
+    })
 
     requestAnimationFrame(() => {this.update()});
 	}
 
 	update() {
-		const context = this.state.context;
+		const context = this.props.context;
 
 		context.save();
 
 		context.fillStyle = '#000';
-		context.fillRect(0, 0, this.state.width, this.state.height);
+		context.fillRect(0, 0, this.props.boardSettings.width, this.props.boardSettings.height);
 
 		this.moveBalls();
 
@@ -54,24 +58,13 @@ export class Board extends React.Component {
 		requestAnimationFrame(() => {this.update()});
 	}
 
-	createBalls(num) {
-		for (let i = 0; i < num; i++) {
-			let ball = new Ball({
-				width: this.state.width,
-				height: this.state.height,
-				color: this.state.colors[Math.floor(Math.random() * this.state.colors.length)]
-			});
-
-			this.balls.push(ball);
-		}
-	}
-
 	moveBalls() {
-		for (let i = 0; i < this.balls.length; i++) {
-			this.balls[i].render(this.state);
+		let balls = this.props.balls;
+		for (let i = 0; i < balls.length; i++) {
+			balls[i].render(this.props.context);
 		}
 
-		if (!this.explosions.length && this.state.exploding) {
+		if (!this.props.explosions.length && this.state.exploding) {
 			this.endGame();
 			this.setState({ exploding: false });
 		} else {
@@ -87,7 +80,7 @@ export class Board extends React.Component {
 		let board = this.refs.canvas,
 				x = e.clientX - board.offsetLeft,
 				y = e.clientY - board.offsetTop,
-				context = this.state.context,
+				context = this.props.context,
 				firstExplosion;
 
 				context.beginPath();
@@ -101,32 +94,34 @@ export class Board extends React.Component {
 					color: '#F5AB35'
 				});
 
-				this.explosions.push(firstExplosion);
+				this.props.addExplosion(firstExplosion)
+
 
 				this.setState({ exploding: true });
 	}
 
 	sizeExplosions() {
-		let k = this.explosions.length;
+		let explosions = this.props.explosions,
+			k = explosions.length;
 
 		while(k--) {
-			let explosion = this.explosions[k];
+			let explosion = explosions[k];
 
 			if (explosion.radius < 1) {
-				this.explosions.splice(k, 1);
+				explosions.splice(k, 1);
 			} else {
-				explosion.render(this.state);
+				explosion.render(this.props.context);
 				this.checkHit(explosion);
 			}
 		}
 	}
 
 	checkHit(explosion) {
-		let i = this.balls.length
+		let i = this.props.balls.length
 		while(i--) {
-			let ball = this.balls[i];
+			let ball = this.props.balls[i];
 
-			if (this.state.context.isPointInPath(ball.cx, ball.cy)){
+			if (this.props.context.isPointInPath(ball.cx, ball.cy)){
 				let newExplosion = new Explosion({
 					cx: ball.cx,
 					cy: ball.cy,
@@ -134,8 +129,9 @@ export class Board extends React.Component {
 				});
 
 				this.props.increaseScore();
-				this.explosions.push(newExplosion);
-				this.balls.splice(i, 1);
+				this.props.addExplosion(newExplosion);
+				this.props.removeBall(i)
+				// this.balls.splice(i, 1);
 			}
 		}
 	}
@@ -148,8 +144,8 @@ export class Board extends React.Component {
 		return (
 			<div className="board-container">
 				<canvas id="game" ref="canvas" onClick={this.clickExplosion.bind(this)}
-				 width={this.state.width}
-         height={this.state.height}
+				 width={this.props.boardSettings.width}
+         height={this.props.boardSettings.height}
 				 />
 			</div>
 		)
@@ -170,6 +166,18 @@ function mapDispatchToProps(dispatch) {
 		},
 		nextLevel: function(opts){
 			dispatch(nextLevel(opts))
+		},
+		setUpBoard: function(opts){
+			dispatch(setUpBoard(opts))
+		},
+		setContext: function(context){
+			dispatch(setContext(context))
+		},
+		addExplosion: function(exp){
+			dispatch(addExplosion(exp))
+		},
+		removeBall: function(idx){
+			dispatch(removeBall(idx))
 		}
 	}
 }

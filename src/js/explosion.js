@@ -9,12 +9,12 @@ export default class Explosion {
 		this.end = Math.PI*2
 	}
 
-	render(state) {
+	render(contx) {
 		if (this.radius === 50.0) {
 			this.sizeInt = -.5;
 		}
 
-		const context = state.context;
+		const context = contx;
 
 		context.save();
 

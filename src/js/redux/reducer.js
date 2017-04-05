@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 
-import { INC_SCORE, NEXT_LEVEL, HIDE_LAYOVER, SHOW_LAYOVER } from './actions'
+import { INC_SCORE, NEXT_LEVEL, HIDE_LAYOVER, SHOW_LAYOVER, ADD_BALLS, SET_UP, ADD_EXP, REMOVE_BALL } from './actions'
 
 // Map of application state structure
 const initialState = {
@@ -12,7 +12,9 @@ const initialState = {
 	layover: {
 		active: true,
 		view: 'start'
-	} 
+	},
+	balls: [],
+	context: null
 }
 
 function score(state = initialState.score, action) {
@@ -78,13 +80,57 @@ function layover(state = initialState.layover, action) {
 	}
 }
 
+function balls(state = initialState.balls, action) {
+	switch (action.type) {
+		case SET_UP:
+			return action.balls
+		case ADD_BALLS:
+			return action.balls
+		case REMOVE_BALL:
+			return [
+				...state.slice(0, action.idx),
+				...state.slice(action.idx + 1)
+			]
+		case NEXT_LEVEL:
+			return action.balls
+		default:
+			return state
+	}
+}
+
+function context(state = initialState.context, action) {
+	switch (action.type) {
+		case SET_UP:
+			return action.context
+		default:
+			return state
+	}
+}
+
+function boardSettings(state = {}, action) {
+			return state
+}
+
+function explosions(state = [], action) {
+		switch (action.type) {
+			case ADD_EXP:
+				return [...state, action.exp]
+			default:
+				return state
+		}
+}
+
 const chainReactionApp = combineReducers({
 	score,
 	scoreNeeded,
 	level,
 	ballCount,
 	percentNeeded,
-	layover
+	layover,
+	balls,
+	context,
+	boardSettings,
+	explosions
 })
 
 export default chainReactionApp

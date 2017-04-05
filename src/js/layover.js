@@ -19,7 +19,8 @@ export class Layover extends React.Component {
 			level: this.props.level,
 			ballCount: this.props.ballCount,
 			percentNeeded: this.props.percentNeeded,
-			scoreNeeded: this.props.scoreNeeded
+			scoreNeeded: this.props.scoreNeeded,
+			boardSettings: this.props.boardSettings
 		});
 
 		this.props.hideLayover();
@@ -51,7 +52,8 @@ function mapStateToProps(state) {
 		level: state.level,
 		ballCount: state.ballCount,
 		percentNeeded: state.percentNeeded,
-		scoreNeeded: state.scoreNeeded
+		scoreNeeded: state.scoreNeeded,
+		boardSettings: state.boardSettings
 	}
 }
 
