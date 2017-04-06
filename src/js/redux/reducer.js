@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 
-import { INC_SCORE, NEXT_LEVEL, HIDE_LAYOVER, SHOW_LAYOVER, ADD_BALLS, SET_UP, ADD_EXP, REMOVE_BALL, SET_EXP_STATE } from './actions'
+import { INC_SCORE, NEXT_LEVEL, HIDE_LAYOVER, SHOW_LAYOVER, ADD_BALLS, SET_UP, ADD_EXP, REMOVE_BALL, SET_EXP_STATE, START } from './actions'
 
 // Map of application state structure
 const initialState = {
@@ -23,6 +23,8 @@ function score(state = initialState.score, action) {
 			return state + 1
 		case NEXT_LEVEL:
 		 return 0
+		case START:
+		 return 0
 		default:
 			return state
 	}
@@ -32,6 +34,8 @@ function scoreNeeded(state = initialState.scoreNeeded, action) {
 	switch (action.type) {
 		case NEXT_LEVEL:
 			return action.scoreNeeded
+		case START:
+			return action.scoreNeeded
 		default:
 			return state
 	}
@@ -39,6 +43,8 @@ function scoreNeeded(state = initialState.scoreNeeded, action) {
 
 function level(state = initialState.level, action) {
 	switch (action.type) {
+		case START:
+			return 1
 		case NEXT_LEVEL:
 			return state + 1
 		default:
@@ -48,6 +54,8 @@ function level(state = initialState.level, action) {
 
 function ballCount(state = initialState.ballCount, action) {
 	switch (action.type) {
+		case START:
+			return action.ballCount
 		case NEXT_LEVEL:
 			return action.ballCount
 		default:
@@ -57,6 +65,8 @@ function ballCount(state = initialState.ballCount, action) {
 
 function percentNeeded(state = initialState.percentNeeded, action) {
 	switch (action.type) {
+		case START:
+			return action.percentNeeded
 		case NEXT_LEVEL:
 			return action.percentNeeded
 		default:
@@ -92,6 +102,8 @@ function balls(state = initialState.balls, action) {
 				...state.slice(action.idx + 1)
 			]
 		case NEXT_LEVEL:
+			return action.balls
+		case START:
 			return action.balls
 		default:
 			return state

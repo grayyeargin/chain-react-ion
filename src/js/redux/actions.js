@@ -7,6 +7,7 @@ export const SET_UP = 'SET_UP'
 export const ADD_EXP = 'ADD_EXP'
 export const REMOVE_BALL = 'REMOVE_BALL'
 export const SET_EXP_STATE = 'SET_EXP_STATE'
+export const START = 'START'
 
 import {ballColors} from '../helpers';
 import Ball from '../ball';
@@ -14,6 +15,23 @@ import Ball from '../ball';
 export function increaseScore() {
 	return {
 		type: INC_SCORE
+	}
+}
+
+export function start(opts) {
+
+	let balls = createBalls({
+		num: opts.ballCount,
+		height: opts.height,
+		width: opts.width
+	});
+
+	return {
+		type: START,
+		scoreNeeded: opts.scoreNeeded,
+		ballCount: opts.ballCount,
+		percentNeeded: opts.percentNeeded,
+		balls
 	}
 }
 

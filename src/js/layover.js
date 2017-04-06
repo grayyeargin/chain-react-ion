@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { showLayover, hideLayover, nextLevel } from './redux/actions'
+import { showLayover, hideLayover, nextLevel, start } from './redux/actions'
 
 export class Layover extends React.Component {
 	constructor(props) {
@@ -11,6 +11,16 @@ export class Layover extends React.Component {
   }
 
   handleStartClick() {
+  	let settings = this.props.boardSettings;
+
+  	this.props.start({
+  		ballCount: settings.startCount,
+			percentNeeded: settings.startPct,
+			scoreNeeded: settings.startNeeded,
+			height: settings.height,
+			width: settings.width
+  	});
+
   	this.props.hideLayover();
   }
 
@@ -43,7 +53,7 @@ export class Layover extends React.Component {
 				layoverView = <GameStart onClick={this.handleStartClick}/>;
 				break
 			case "end":
-				layoverView = <GameOver onClick={this.handleNextClick}/>;
+				layoverView = <GameOver onClick={this.handleStartClick}/>;
 				break
 			default:
 				layoverView = <NextLevel curLvl={level} onClick={this.handleNextClick}/>;
@@ -79,6 +89,9 @@ function mapDispatchToProps(dispatch) {
 		},
 		nextLevel: function(opts){
 			dispatch(nextLevel(opts));
+		},
+		start: function(opts){
+			dispatch(start(opts));
 		}
 	}
 }

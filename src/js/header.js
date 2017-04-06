@@ -9,7 +9,7 @@ export class Header extends React.Component {
 	render() {
 		return (
 			<div id="title-board">
-				<img src="chain-reaction.png" alt="" />
+				<img src="images/chain-reaction.png" alt="" />
 				<h2>LEVEL: <span id="level">{this.props.level}</span></h2>
 				<div className="wrapper score-contents">
 					<h3>Score: <span id="score">{this.props.score}</span></h3>
