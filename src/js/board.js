@@ -2,7 +2,7 @@ import React from 'react'
 import Ball from './ball'
 import Explosion from './explosion'
 import { connect } from 'react-redux'
-import { increaseScore, showLayover, nextLevel, setUpBoard, addExplosion, removeBall } from './redux/actions'
+import { increaseScore, showLayover, nextLevel, setUpBoard, addExplosion, removeBall, explodingState } from './redux/actions'
 
 export class Board extends React.Component {
 	constructor(props) {
@@ -11,23 +11,11 @@ export class Board extends React.Component {
 		this.sassyLossComments = ["Bummer dude... You lost", "Try getting more 'splosions next time", "'A' for effort. 'F+' for actual success", "You didn't win, BUT you are excellent at losing", "Don't sweat the loss, I am sure you are good at something"];
 
 		this.state = {
-			height: 400,
-			width: 700,
-			context: null,
 			colors: ['#bc13fe', '#FF9933', '#7FFF00', '#00BFFF', '#FF0000'],
 			explosionColors: ['rgba(127, 255, 0, 0.6)', 'rgba(25, 181, 254, 0.6)', 'rgba(249, 191, 59, 0.6)', 'rgba(188, 19, 254, 0.6)'],
-			comment: this.sassyLossComments[Math.floor(Math.random() * this.sassyLossComments.length)],
-			scoreCount: 0,
-			level: 1,
-			percentHit: 0.1,
-			ballCount: 30,
-			minimumScore: 2,
-			hitsLeft: 2,
-			exploding: false
+			comment: this.sassyLossComments[Math.floor(Math.random() * this.sassyLossComments.length)]
 		}
 
-		this.balls = [];
-		this.explosions = [];
 	}
 
 	componentDidMount() {
@@ -64,16 +52,16 @@ export class Board extends React.Component {
 			balls[i].render(this.props.context);
 		}
 
-		if (!this.props.explosions.length && this.state.exploding) {
+		if (!this.props.explosions.length && this.props.exploding) {
 			this.endGame();
-			this.setState({ exploding: false });
+			this.props.explodingState(false);
 		} else {
 			this.sizeExplosions();
 		}
 	}
 
 	clickExplosion(e) {
-		if (this.state.exploding) {
+		if (this.props.exploding) {
 			return;
 		}
 
@@ -94,10 +82,9 @@ export class Board extends React.Component {
 					color: '#F5AB35'
 				});
 
-				this.props.addExplosion(firstExplosion)
+				this.props.addExplosion(firstExplosion);
 
-
-				this.setState({ exploding: true });
+				this.props.explodingState(true);
 	}
 
 	sizeExplosions() {
@@ -130,14 +117,17 @@ export class Board extends React.Component {
 
 				this.props.increaseScore();
 				this.props.addExplosion(newExplosion);
-				this.props.removeBall(i)
-				// this.balls.splice(i, 1);
+				this.props.removeBall(i);
 			}
 		}
 	}
 
 	endGame() {
-		this.props.showLayover('next-level');
+		if (this.props.score < this.props.scoreNeeded) {
+			this.props.showLayover('end');
+		} else {
+			this.props.showLayover('next-level');
+		}
 	}
 
 	render() {
@@ -178,6 +168,9 @@ function mapDispatchToProps(dispatch) {
 		},
 		removeBall: function(idx){
 			dispatch(removeBall(idx))
+		},
+		explodingState: function(isExp){
+			dispatch(explodingState(isExp))
 		}
 	}
 }

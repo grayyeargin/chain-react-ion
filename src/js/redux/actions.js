@@ -6,6 +6,7 @@ export const ADD_BALLS = 'ADD_BALLS'
 export const SET_UP = 'SET_UP'
 export const ADD_EXP = 'ADD_EXP'
 export const REMOVE_BALL = 'REMOVE_BALL'
+export const SET_EXP_STATE = 'SET_EXP_STATE'
 
 import {ballColors} from '../helpers';
 import Ball from '../ball';
@@ -20,11 +21,11 @@ export function nextLevel(opts) {
 	let ballCount, percentNeeded, scoreNeeded, balls;
 
 	if (opts.level > 5) {
-		ballCount = opts.ballCount - 5;
+		ballCount = opts.ballCount - 10;
 		percentNeeded = opts.percentNeeded;
 	} else {
 		ballCount = opts.ballCount + 10;
-		percentNeeded = opts.percentNeeded + 0.07;
+		percentNeeded = opts.percentNeeded + 0.1;
 	}
 
 	scoreNeeded = Math.round(ballCount * percentNeeded);
@@ -85,6 +86,13 @@ export function removeBall(idx) {
 	return {
 		type: REMOVE_BALL,
 		idx
+	}
+}
+
+export function explodingState(isExp) {
+	return {
+		type: SET_EXP_STATE,
+		isExp
 	}
 }
 

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 
-import { INC_SCORE, NEXT_LEVEL, HIDE_LAYOVER, SHOW_LAYOVER, ADD_BALLS, SET_UP, ADD_EXP, REMOVE_BALL } from './actions'
+import { INC_SCORE, NEXT_LEVEL, HIDE_LAYOVER, SHOW_LAYOVER, ADD_BALLS, SET_UP, ADD_EXP, REMOVE_BALL, SET_EXP_STATE } from './actions'
 
 // Map of application state structure
 const initialState = {
@@ -120,6 +120,15 @@ function explosions(state = [], action) {
 		}
 }
 
+function exploding(state = false, action) {
+	switch (action.type) {
+		case SET_EXP_STATE:
+			return action.isExp
+		default:
+			return state
+	}
+}
+
 const chainReactionApp = combineReducers({
 	score,
 	scoreNeeded,
@@ -130,7 +139,8 @@ const chainReactionApp = combineReducers({
 	balls,
 	context,
 	boardSettings,
-	explosions
+	explosions,
+	exploding
 })
 
 export default chainReactionApp

@@ -13,7 +13,10 @@ const initialState = {
 	percentNeeded: 0.1,
 	boardSettings: {
 		height: 400,
-		width: 700
+		width: 700,
+		startCount: 30,
+		startPct: 0.1,
+		startNeeded: 2 
 	},
 	layover: {
 		active: true,
@@ -21,7 +24,8 @@ const initialState = {
 	},
 	balls: [],
 	explosions: [],
-	context: null
+	context: null,
+	exploding: false
 }
 
 let store = createStore(

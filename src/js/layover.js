@@ -20,7 +20,8 @@ export class Layover extends React.Component {
 			ballCount: this.props.ballCount,
 			percentNeeded: this.props.percentNeeded,
 			scoreNeeded: this.props.scoreNeeded,
-			boardSettings: this.props.boardSettings
+			boardSettings: this.props.boardSettings,
+			view: this.props.view
 		});
 
 		this.props.hideLayover();
@@ -31,10 +32,21 @@ export class Layover extends React.Component {
 		const hiddenClass = active ? '' : 'hidden';
 		let layoverView;
 
-		if (view === "start") {
-			layoverView = <GameStart onClick={this.handleStartClick}/>;
-		} else {
-			layoverView = <NextLevel onClick={this.handleNextClick}/>;
+		// if (view === "start") {
+		// 	layoverView = <GameStart onClick={this.handleStartClick}/>;
+		// } else if (view) {
+		// 	layoverView = <NextLevel curLvl={level} onClick={this.handleNextClick}/>;
+		// }
+
+		switch (view) {
+			case "start":
+				layoverView = <GameStart onClick={this.handleStartClick}/>;
+				break
+			case "end":
+				layoverView = <GameOver onClick={this.handleNextClick}/>;
+				break
+			default:
+				layoverView = <NextLevel curLvl={level} onClick={this.handleNextClick}/>;
 		}
 
 		return (
@@ -84,10 +96,20 @@ function GameStart(props) {
 }
 
 function NextLevel(props) {
+	let nxtLvl = props.curLvl + 1
 	return (
 		<div className='game-layover-msg'>
-			<h1>Noice, now to next level</h1>
+			<h1>Noice, now to next level {nxtLvl}</h1>
 			<div onClick={props.onClick} className='game-button'>LETS DO THIS</div>
+		</div>
+	)
+}
+
+function GameOver(props) {
+	return (
+		<div className='game-layover-msg'>
+			<h1>Totes sucks</h1>
+			<div onClick={props.onClick} className='game-button'>BEGIN ONCE MORE?</div>
 		</div>
 	)
 }
