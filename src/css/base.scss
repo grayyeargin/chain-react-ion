@@ -1,6 +1,6 @@
 body {
 	color: white;
-	background: url('http://img0.liveinternet.ru/images/attach/c/5/87/589/87589366_nebe.gif');
+	// background: url('http://img0.liveinternet.ru/images/attach/c/5/87/589/87589366_nebe.gif');
 	font-family: 'VT323', monospace;
 	text-align: center;
 	margin: 0;
@@ -90,6 +90,14 @@ h2 {
 	height: 100%;
 	padding-top: 30px;
 	background-color: rgba(0, 0, 0, .7);
+}
+
+.svg-chart {
+	padding-bottom: 30px;
+}
+
+.score-line {
+	stroke: #000;
 }
 
 
