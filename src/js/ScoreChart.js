@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as d3 from 'd3'
 import XAxis from './XAxis'
-// import ScoreBar from './scoreBar'
+import ScoreBar from './scoreBar'
 import NeededLine from './NeededLine'
 
 
@@ -20,7 +20,7 @@ export class ScoreChart extends React.Component {
 			<div id="score-chart">
 				<svg className="svg-chart" width={this.props.width} height={(this.height + 10)}>
 					<XAxis {...this.props} chartHeight={this.height} xScale={xScale} />
-					
+					<ScoreBar score={this.props.score} xScale={xScale} />
 					<NeededLine {...this.props} chartHeight={this.height} xScale={xScale} />
 				</svg>
 			</div>
