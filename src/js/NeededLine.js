@@ -24,10 +24,14 @@ export default class NeededLine extends React.Component{
   }
 
   render() {
-  	let xPosition = this.props.xScale(this.props.scoreNeeded)
+  	let xPosition = this.props.xScale(this.props.scoreNeeded),
+  		textPosition = "translate(" + (xPosition - 15) + ",50)rotate(0)"
 
   	return (
-    		<line className="score-line" ref="scoreNeeded" x1={xPosition} y1="0" x2={xPosition} y2="40"></line>
+  		<g>
+    		<line className="score-line" ref="scoreNeeded" x1={xPosition} y1="0" x2={xPosition} y2="30"></line>
+    		<text className="score-line-text" transform={textPosition}>Needed</text>
+    	</g>
   	)
   }
 }

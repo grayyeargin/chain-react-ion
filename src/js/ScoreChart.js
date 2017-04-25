@@ -20,7 +20,7 @@ export class ScoreChart extends React.Component {
 			<div id="score-chart">
 				<svg className="svg-chart" width={this.props.width} height={(this.height + 10)}>
 					<XAxis {...this.props} chartHeight={this.height} xScale={xScale} />
-					<ScoreBar score={this.props.score} xScale={xScale} />
+					<ScoreBar score={this.props.score} scoreNeeded={this.props.scoreNeeded} xScale={xScale} />
 					<NeededLine {...this.props} chartHeight={this.height} xScale={xScale} />
 				</svg>
 			</div>

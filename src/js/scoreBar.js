@@ -17,10 +17,13 @@ export default class ScoreBar extends React.Component{
   }
 
   render() {
-  	let scoreWidth = this.props.xScale(this.props.score)
+  	let scoreWidth = this.props.xScale(this.props.score),
+    rectStyle = {
+      fill: this.props.score >= this.props.scoreNeeded ? 'green' : 'red'
+    }
 
   	return (
-    		<rect className="chart-bar" ref="scoreBar" x="0" y="5" height="20" width={scoreWidth}></rect>
+    		<rect style={rectStyle} className="chart-bar" ref="scoreBar" x="0" y="5" height="20" width={scoreWidth}></rect>
   	)
   }
 }
