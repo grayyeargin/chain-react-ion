@@ -102,8 +102,8 @@ function mapDispatchToProps(dispatch) {
 function GameStart(props) {
 	return (
 		<div className='game-layover-msg'>
-			<h1>'SPLOSION GAME</h1>
-			<div onClick={props.onClick} className='game-button'>LETS DO THIS</div>
+			<h1>CHAIN REACTION</h1>
+			<div onClick={props.onClick} className='game-button'>START</div>
 		</div>
 	)
 }
@@ -113,7 +113,7 @@ function NextLevel(props) {
 	return (
 		<div className='game-layover-msg'>
 			<h1>Noice, now to next level {nxtLvl}</h1>
-			<div onClick={props.onClick} className='game-button'>LETS DO THIS</div>
+			<div onClick={props.onClick} className='game-button'>NEXT LEVEL</div>
 		</div>
 	)
 }
@@ -121,8 +121,8 @@ function NextLevel(props) {
 function GameOver(props) {
 	return (
 		<div className='game-layover-msg'>
-			<h1>Totes sucks</h1>
-			<div onClick={props.onClick} className='game-button'>BEGIN ONCE MORE?</div>
+			<h1>Not quite enough...</h1>
+			<div onClick={props.onClick} className='game-button'>TRY AGAIN</div>
 		</div>
 	)
 }
