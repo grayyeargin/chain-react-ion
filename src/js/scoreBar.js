@@ -19,7 +19,7 @@ export default class ScoreBar extends React.Component{
   render() {
   	let scoreWidth = this.props.xScale(this.props.score),
     rectStyle = {
-      fill: this.props.score >= this.props.scoreNeeded ? 'green' : 'red'
+      fill: this.props.score >= this.props.scoreNeeded ? '#7FFF00' : '#FF0000'
     }
 
   	return (
