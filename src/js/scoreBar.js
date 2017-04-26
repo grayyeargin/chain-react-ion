@@ -4,16 +4,6 @@ import * as d3 from 'd3'
 export default class ScoreBar extends React.Component{
 	constructor(props) {
 		super(props)
-
-    // this.renderNeededLine = this.renderNeededLine.bind(this)
-  }
-
-  componentDidMount() {
-    // this.renderNeededLine(this.props.xScale, this.props.scoreNeeded)
-  }
-
-  componentWillReceiveProps(NextProps) {
-    // this.renderNeededLine(NextProps.xScale, NextProps.scoreNeeded)
   }
 
   render() {
