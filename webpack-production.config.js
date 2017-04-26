@@ -17,7 +17,7 @@ module.exports = {
     'main-asset': './src/js/index.js'
   },
   output: {
-    path: path.join(__dirname, 'static'),
+    path: path.join(__dirname, 'docs'),
     filename: '[name].js',
     publicPath: '/docs/'
   },
