@@ -112,7 +112,7 @@ function NextLevel(props) {
 	let nxtLvl = props.curLvl + 1
 	return (
 		<div className='game-layover-msg'>
-			<h1>Noice, now to next level {nxtLvl}</h1>
+			<h1>Well done, now to level {nxtLvl}</h1>
 			<div onClick={props.onClick} className='game-button'>NEXT LEVEL</div>
 		</div>
 	)
@@ -122,7 +122,7 @@ function GameOver(props) {
 	return (
 		<div className='game-layover-msg'>
 			<h1>Not quite enough...</h1>
-			<div onClick={props.onClick} className='game-button'>TRY AGAIN</div>
+			<div onClick={props.onClick} className='game-button'>START OVER</div>
 		</div>
 	)
 }
