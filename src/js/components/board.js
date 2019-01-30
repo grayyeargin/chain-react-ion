@@ -2,30 +2,20 @@ import React from 'react'
 import Ball from './ball'
 import Explosion from './explosion'
 import { connect } from 'react-redux'
-import { increaseScore, showLayover, nextLevel, setUpBoard, addExplosion, removeBall, explodingState } from './redux/actions'
+import { increaseScore, showLayover, nextLevel, setUpBoard, addExplosion, removeBall, explodingState } from '../redux/actions'
 
 export class Board extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			colors: ['#bc13fe', '#FF9933', '#7FFF00', '#00BFFF', '#FF0000'],
-			explosionColors: ['rgba(127, 255, 0, 0.6)', 'rgba(25, 181, 254, 0.6)', 'rgba(249, 191, 59, 0.6)', 'rgba(188, 19, 254, 0.6)']
-		}
-
-	}
-
 	componentDidMount() {
 		const context = this.refs.canvas.getContext('2d');
 
-    this.props.setUpBoard({
-    	context: context,
-    	num: this.props.ballCount,
-    	height: this.props.boardSettings.height,
-    	width: this.props.boardSettings.width
-    })
+	    this.props.setUpBoard({
+	    	context: context,
+	    	num: this.props.ballCount,
+	    	height: this.props.boardSettings.height,
+	    	width: this.props.boardSettings.width
+	    })
 
-    requestAnimationFrame(() => {this.update()});
+	    requestAnimationFrame(() => {this.update()});
 	}
 
 	update() {
@@ -44,7 +34,7 @@ export class Board extends React.Component {
 	}
 
 	moveBalls() {
-		let balls = this.props.balls;
+		const balls = this.props.balls;
 		for (let i = 0; i < balls.length; i++) {
 			balls[i].render(this.props.context);
 		}
@@ -63,25 +53,25 @@ export class Board extends React.Component {
 		}
 
 		let board = this.refs.canvas,
-				x = e.clientX - board.offsetLeft,
-				y = e.clientY - board.offsetTop,
-				context = this.props.context,
-				firstExplosion;
+		x = e.clientX - board.offsetLeft,
+		y = e.clientY - board.offsetTop,
+		context = this.props.context,
+		firstExplosion;
 
-				context.beginPath();
-				context.arc(x,y,1,0,Math.PI*2);
-				context.fillStyle = '#F5AB35';
-				context.fill();
+		context.beginPath();
+		context.arc(x,y,1,0,Math.PI*2);
+		context.fillStyle = '#F5AB35';
+		context.fill();
 
-				firstExplosion = new Explosion({
-					cx: x,
-					cy: y,
-					color: '#F5AB35'
-				});
+		firstExplosion = new Explosion({
+			cx: x,
+			cy: y,
+			color: '#F5AB35'
+		});
 
-				this.props.addExplosion(firstExplosion);
+		this.props.addExplosion(firstExplosion);
 
-				this.props.explodingState(true);
+		this.props.explodingState(true);
 	}
 
 	sizeExplosions() {
@@ -101,6 +91,7 @@ export class Board extends React.Component {
 	}
 
 	checkHit(explosion) {
+		const colors = ['#bc13fe', '#FF9933', '#7FFF00', '#00BFFF', '#FF0000']
 		let i = this.props.balls.length
 		while(i--) {
 			let ball = this.props.balls[i];
@@ -109,7 +100,7 @@ export class Board extends React.Component {
 				let newExplosion = new Explosion({
 					cx: ball.cx,
 					cy: ball.cy,
-					color: this.state.colors[Math.floor(Math.random()*this.state.colors.length)]
+					color: colors[Math.floor(Math.random()*colors.length)]
 				});
 
 				this.props.increaseScore();

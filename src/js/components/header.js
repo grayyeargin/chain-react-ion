@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import chainReactionImg from '../images/chain-reaction.png'
+import chainReactionImg from '../../images/chain-reaction.png'
 
 export class Header extends React.Component {
 	constructor(props) {

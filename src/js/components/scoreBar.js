@@ -13,7 +13,7 @@ export default class ScoreBar extends React.Component{
     }
 
   	return (
-    		<rect style={rectStyle} className="chart-bar" ref="scoreBar" x="0" y="5" height="20" width={scoreWidth}></rect>
+    		<rect style={rectStyle} className="chart-bar" ref="scoreBar" x="5" y="5" height="20" width={scoreWidth}></rect>
   	)
   }
 }

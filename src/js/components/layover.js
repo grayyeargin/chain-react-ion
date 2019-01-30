@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { showLayover, hideLayover, nextLevel, start } from './redux/actions'
+import { showLayover, hideLayover, nextLevel, start } from '../redux/actions'
 
 export class Layover extends React.Component {
 	constructor(props) {
@@ -41,12 +41,6 @@ export class Layover extends React.Component {
 		const {view, active, level} = this.props;
 		const hiddenClass = active ? '' : 'hidden';
 		let layoverView;
-
-		// if (view === "start") {
-		// 	layoverView = <GameStart onClick={this.handleStartClick}/>;
-		// } else if (view) {
-		// 	layoverView = <NextLevel curLvl={level} onClick={this.handleNextClick}/>;
-		// }
 
 		switch (view) {
 			case "start":

@@ -1,4 +1,3 @@
-
 export default class Ball {
 	constructor(args) {
 		this.boardWidth = args.width;
@@ -35,10 +34,10 @@ export default class Ball {
 		
 		context.save();
 
-    context.translate(this.cx, this.cy);
-    context.beginPath();
-    context.arc(0, 0, this.radius, this.start, this.end);
-    context.closePath();
+	    context.translate(this.cx, this.cy);
+	    context.beginPath();
+	    context.arc(0, 0, this.radius, this.start, this.end);
+	    context.closePath();
 		context.fillStyle = this.color;
 		context.fill();
 

@@ -24,7 +24,7 @@ export default class XAxis extends React.Component{
 
   render() {
   	return (
-    		<g className="axis x" ref="xaxis" transform={"translate(0, " + (this.props.chartHeight) + ")"}></g>
+    		<g className="axis x" ref="xaxis" transform={"translate(5, " + (this.props.chartHeight) + ")"}></g>
   	)
   }
 }

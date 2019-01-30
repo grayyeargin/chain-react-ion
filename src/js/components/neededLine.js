@@ -29,8 +29,7 @@ export default class NeededLine extends React.Component{
 
   	return (
   		<g>
-    		<line className="score-line" ref="scoreNeeded" x1={xPosition} y1="0" x2={xPosition} y2="30"></line>
-    		<text className="score-line-text" transform={textPosition}>Needed</text>
+    		<line className="score-line" ref="scoreNeeded" x1={xPosition + 5} y1="0" x2={xPosition + 5} y2="30"></line>
     	</g>
   	)
   }

@@ -9,8 +9,8 @@ export const REMOVE_BALL = 'REMOVE_BALL'
 export const SET_EXP_STATE = 'SET_EXP_STATE'
 export const START = 'START'
 
-import {ballColors} from '../helpers';
-import Ball from '../ball';
+import {ballColors} from '../components/helpers';
+import Ball from '../components/ball';
 
 export function increaseScore() {
 	return {
