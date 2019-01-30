@@ -1,0 +1,128 @@
+body {
+  color: white;
+  background: url("http://img0.liveinternet.ru/images/attach/c/5/87/589/87589366_nebe.gif");
+  font-family: 'VT323', monospace;
+  text-align: center;
+  margin: 0;
+  padding: 10px; }
+
+h2 {
+  margin: 5px 0; }
+
+.hidden {
+  display: none !important; }
+
+.border-wrapper {
+  overflow: hidden;
+  display: inline-block;
+  margin: 0 auto;
+  border: 15px solid white;
+  border-image: url(http://m.rgbimg.com/cache1sbAIW/users/x/xy/xymonau/600/nsCYj08.jpg) 30 30 round; }
+
+#game {
+  background-color: #000; }
+
+.wrapper {
+  width: 100%; }
+
+.score-contents h3 {
+  display: inline-block;
+  margin: 10px  30px; }
+
+#finished-remark {
+  padding-top: 20%;
+  font-size: 3em; }
+
+#game-options {
+  top: 0;
+  left: 0;
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7); }
+
+.game-layover-msg {
+  margin-top: 250px; }
+
+.game-button {
+  border: none;
+  outline: none;
+  margin: 0 auto;
+  background-color: #e67e22;
+  padding: 10px 20px;
+  font: inherit;
+  font-size: 1.5em;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block; }
+
+.option-buttons:hover {
+  background-color: #d35400; }
+
+#game-options #play-again {
+  margin-top: 30px;
+  display: none; }
+
+#mobile {
+  display: none; }
+
+#game-layover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 30px;
+  background-color: rgba(0, 0, 0, 0.7); }
+
+.svg-chart {
+  padding: 10px 10px 30px 10px; }
+
+.score-line {
+  stroke: #000; }
+
+.line {
+  fill: none;
+  stroke: steelblue; }
+
+.axis line, .score-line, .score-line-text, .axis path, .axis text {
+  stroke: #fff; }
+
+.score-line-text {
+  font-family: sans-serif;
+  font-size: 10px; }
+
+@media screen and (max-width: 700px) {
+  #game {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; }
+  #desktop {
+    display: none; }
+  #title-board {
+    display: inline-block;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 101; }
+  #title-board img {
+    display: none; }
+  #title-board h2, #title-board h3 {
+    position: relative;
+    display: block;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    font-size: 1em; }
+  #game-options {
+    z-index: 5; }
+  #finished-remark {
+    font-size: 2em; }
+  .border-wrapper {
+    border: none;
+    height: 100%;
+    width: 100%; } }
+

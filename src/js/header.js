@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import chainReactionImg from '../images/chain-reaction.png'
 
 export class Header extends React.Component {
 	constructor(props) {
@@ -9,7 +10,7 @@ export class Header extends React.Component {
 	render() {
 		return (
 			<div id="title-board">
-				<img src="images/chain-reaction.png" alt="" />
+				<img src={chainReactionImg} alt="" />
 				<h2>LEVEL <span id="level">{this.props.level}</span></h2>
 			</div>
 		)
@@ -18,8 +19,6 @@ export class Header extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		score: state.score,
-		scoreNeeded: state.scoreNeeded,
 		level: state.level
 	}
 }
